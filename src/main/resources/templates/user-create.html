@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create User</title>
+</head>
+<body>
+<h2>Create New User</h2>
+<form action="/admin/user-create" method="post">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username"><br><br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password"><br><br>
+    <label for="firstName">FirstName:</label>
+    <input type="text" id="firstName" name="firstName"><br><br>
+    <label for="lastName">LastName:</label>
+    <input type="text" id="lastName" name="lastName"><br><br>
+    <div th:each="role : ${listRoles}">
+        <!-- Используем значение роли для id и value чекбокса -->
+        <label th:for="${'role_' + role.id}">
+            <input type="checkbox" th:id="${'role_' + role.id}" th:name="listRoles" th:value="${role.id}">
+            <!-- Отображаем имя роли -->
+            <span th:text="${role.name}"></span>
+        </label><br>
+    </div>
+<!--    <input type="text" id="roles" name="roles"><br><br> &lt;!&ndash; Input roles as comma-separated values &ndash;&gt;-->
+    <input type="submit" value="Create">
+</form>
+<a href="/logout">Logout</a>
+</body>
+</html>
+
+
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Create User</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Create User</h1>-->
+<!--<form method="post" th:action="@{/admin/user-create}">-->
+<!--    <label for="username">Username:</label>-->
+<!--    <input type="text" id="username" name="username"><br>-->
+<!--    <label for="firstName">First Name:</label>-->
+<!--    <input type="text" id="firstName" name="firstName"><br>-->
+<!--    <label for="lastName">Last Name:</label>-->
+<!--    <input type="text" id="lastName" name="lastName"><br>-->
+<!--    <input type="submit" value="Create">-->
+<!--</form>-->
+<!--</body>-->
+<!--</html>-->
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Create User</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Create User</h1>-->
+<!--<form action="/admin/user-create" method="post">-->
+<!--    <label for="username">Username:</label>-->
+<!--    <input type="text" id="username" name="username">-->
+<!--    <label for="password">Password:</label>-->
+<!--    <input type="password" id="password" name="password">-->
+<!--    <label for="roles">Roles:</label>-->
+<!--    <input type="text" id="roles" name="roles">-->
+<!--    <button type="submit">Create</button>-->
+<!--</form>-->
+<!--<a href="/logout">Logout</a>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Creat User</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<form action="#" th:action="@{/admin/user-create}" th:object="${user}" method="post">-->
+<!--    <label for="firstName">First name</label>-->
+<!--    <input type="text" th:field="*{firstName}" id="First name" placeholder="First name">-->
+<!--    <label for="lastName">Last name</label>-->
+<!--    <input type="text" th:field="*{lastName}" id="Last name" placeholder="Last name">-->
+<!--    <input type="submit" value="Creat User">-->
+<!--</form>-->
+<!--</body>-->
+<!--</html>-->
