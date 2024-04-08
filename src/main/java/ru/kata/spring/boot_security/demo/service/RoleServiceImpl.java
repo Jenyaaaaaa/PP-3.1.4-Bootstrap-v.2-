@@ -1,9 +1,7 @@
 package ru.kata.spring.boot_security.demo.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.kata.spring.boot_security.demo.model.Role;
-import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.repository.RoleRepository;
 
 import javax.transaction.Transactional;
@@ -33,10 +31,6 @@ public class RoleServiceImpl implements RoleService {
         return roleRepository.findById(id).orElse(null);
     }
 
-    //    @Override
-//    public Role createRole(Role role) {
-//        return null;
-//    }
     @Transactional
     @Override
     public Role createRole(Role role) {
@@ -48,13 +42,13 @@ public class RoleServiceImpl implements RoleService {
     public List<Role> findRolesByIds(List<Long> roleIds) {
         return roleRepository.findAllById(roleIds);
     }
+
     @Transactional
     @Override
     public Role updateRole(Long id, Role roleDetails) {
         Role role = roleRepository.findById(id).orElse(null);
         if (role != null) {
-            role.setName(roleDetails.getName());
-            // Другие поля роли, которые необходимо обновить
+            role.setName(roleDetails.getName()); // Другие поля роли, которые необходимо обновить
             return roleRepository.save(role);
         }
         return null;

@@ -1,6 +1,5 @@
 package ru.kata.spring.boot_security.demo.service;
 
-import org.springframework.core.codec.AbstractSingleValueEncoder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -10,12 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.model.Role;
 
-
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
-
     private final UserService userService;
-
 
     @Autowired
     public UserDetailsServiceImpl(UserService userService) {
@@ -34,5 +30,4 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 .roles(user.getRoles().stream().map(Role::getName).toArray(String[]::new))
                 .build();
     }
-
 }

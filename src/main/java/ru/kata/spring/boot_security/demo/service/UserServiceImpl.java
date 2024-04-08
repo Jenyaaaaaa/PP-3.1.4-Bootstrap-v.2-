@@ -73,6 +73,7 @@ public class UserServiceImpl implements UserService, Serializable {
                 user.getUsername(), user.getPassword(), roles(user.getRoles())
         );
     }
+
     @Override
     @Transactional
     public void updateUser(User user) {
@@ -86,6 +87,7 @@ public class UserServiceImpl implements UserService, Serializable {
         user.setRoles(roles);
         updateUser(user);
     }
+
     public User get(Long id) {
         return userRepository.findById(id).orElse(null);
     }
@@ -96,16 +98,5 @@ public class UserServiceImpl implements UserService, Serializable {
                 .collect(Collectors.toList());
     }
 }
-
-
-//    public void assignRolesToUser(Long userId, Set<Long> roleIds) {
-//        User user = userRepository.findById(userId).orElse(null);
-//        if (user != null) {
-//            Set<Role> roles = roleRepository.findAllById(roleIds).stream().collect(Collectors.toSet());
-//            user.setRoles(roles);
-//            userRepository.save(user);
-//        }
-//    }
-
 
 

@@ -1,10 +1,7 @@
 package ru.kata.spring.boot_security.demo.repository;
 
-
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,9 +1,9 @@
 package ru.kata.spring.boot_security.demo.model;
-import ru.kata.spring.boot_security.demo.model.User;
 
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 
@@ -19,8 +19,8 @@ public class Role implements GrantedAuthority {
     private String name;
 
     @ManyToMany(mappedBy = "roles")
-    //private Set<User> users;
-    private Set<User> users=new HashSet<>();
+    private Set<User> users = new HashSet<>();
+
     public Role(String name) {
         this.name = name;
     }
@@ -41,8 +41,7 @@ public class Role implements GrantedAuthority {
 
     @Override
     public String getAuthority() {
-          return name;
-        //return getName();
+        return name;
     }
 
     @Override
@@ -58,32 +57,4 @@ public class Role implements GrantedAuthority {
         return Objects.hash(id, name, users);
     }
 }
-
-//    @Column(name = "username")
-//    private String username;
-//    @Column(name = "password")
-//    private String password;
-//    @Column(name = "roles")
-//    private String roles;
-
-//    public Role (){
-//
-//    }
-//
-//    public Role(Long id, String name) {
-//        this.id = id;
-//        this.name = name;
-//    }
-//
-//    public Role (Long id){
-//this.id = id;
-//    }
-
-    //    public void setId(Long id) {
-//        this.id = id;
-//    }
-//
-//    public Long getId() {
-//        return id;
-//    }
 
