@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>All Users</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
 
@@ -11,9 +12,12 @@
 <nav class="navbar navbar-light bg-dark" style="height: 5vh">
     <div class="container-fluid">
         <div>
-            <strong class="text-white"><th:block th:text="${user.username}"></th:block></strong>
+            <strong class="text-white">
+                <th:block th:text="${user.username}"></th:block>
+            </strong>
             <span class="text-white">with roles: </span>
-            <span class="text-white"><th:block th:each="role : ${user.getRoles()}" th:text="${role.name + ' '}"></th:block></span>
+            <span class="text-white"><th:block th:each="role : ${user.getRoles()}"
+                                               th:text="${role.name + ' '}"></th:block></span>
         </div>
 
         <a class="navbar-brand text-white-50 fs-6" href="/logout">Logout</a>
@@ -21,16 +25,21 @@
 </nav>
 
 <div class="d-flex align-items-start" style="flex: 1; height: 95vh; background: #efefef;">
-    <div class="nav flex-column nav-pills" style="padding-top: 15px; flex: 1 7; height: 100%; background: white" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-        <a class="nav-link active" id="v-pills-admin-tab" data-bs-toggle="pill" href="#v-pills-admin" role="tab" aria-controls="v-pills-admin" aria-selected="true">Admin</a>
-        <a class="nav-link" id="v-pills-user-tab" data-bs-toggle="pill" href="#v-pills-user" role="tab" aria-controls="v-pills-user" aria-selected="false">User</a>
+    <div class="nav flex-column nav-pills" style="padding-top: 15px; flex: 1 7; height: 100%; background: white"
+         id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <a class="nav-link active" id="v-pills-admin-tab" data-bs-toggle="pill" href="#v-pills-admin" role="tab"
+           aria-controls="v-pills-admin" aria-selected="true">Admin</a>
+        <a class="nav-link" id="v-pills-user-tab" data-bs-toggle="pill" href="#v-pills-user" role="tab"
+           aria-controls="v-pills-user" aria-selected="false">User</a>
     </div>
     <div class="tab-content" id="v-pills-tabContent" style="padding: 15px 25px 15px 25px; flex: 6 7; height: 100%;">
         <div class="tab-pane fade show active" id="v-pills-admin" role="tabpanel" aria-labelledby="v-pills-admin-tab">
             <h1>Admin panel</h1>
             <nav class="nav nav-tabs" id="nav-tab" role="tablist">
-                <a class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">User table</a>
-                <a class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">New User</a>
+                <a class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" href="#nav-home" role="tab"
+                   aria-controls="nav-home" aria-selected="true">User table</a>
+                <a class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" href="#nav-profile" role="tab"
+                   aria-controls="nav-profile" aria-selected="false">New User</a>
             </nav>
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
@@ -62,48 +71,77 @@
                                                   th:text="${role.name + ' '}">
                                         </th:block>
                                     </td>
-                                    <td><button type="button" class="btn btn-info text-white" data-bs-toggle="modal" th:data-bs-target="${'#edit' + user.id}">Edit</button></td>
-                                    <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" th:data-bs-target="${'#deleteModal' + user.id}">Delete</button></td>
+                                    <td>
+                                        <button type="button" class="btn btn-info text-white" data-bs-toggle="modal"
+                                                th:data-bs-target="${'#edit' + user.id}">Edit
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                th:data-bs-target="${'#deleteModal' + user.id}">Delete
+                                        </button>
+                                    </td>
 
                                     <!-- ModalEdit -->
-                                    <div class="modal fade" th:id="${'edit' + user.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade" th:id="${'edit' + user.id}" tabindex="-1"
+                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <form th:action="@{/admin/edit/{id}(id = ${user.getId()})}"
                                               th:method="POST">
                                             <div class="modal-dialog modal-dialog-centered">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" id="exampleModalLabel">Edit user</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                aria-label="Close"></button>
                                                     </div>
-                                                    <div class="modal-body" style="display: flex; align-items: center; justify-content: center">
+                                                    <div class="modal-body"
+                                                         style="display: flex; align-items: center; justify-content: center">
                                                         <div style="width: 90%; display: flex; flex-direction: column; align-items: center; justify-content: center">
-<!--                                                            <input type="hidden" th:value="${user.username}" th:name="username" />-->
-                                                            <h6 class="card-title" style="margin: 5px 0; text-align: center">ID</h6>
-                                                            <input type="number" th:name="id" th:value="${user.id}" disabled class="form-control" placeholder="ID">
-                                                            <h6 class="card-title" style="margin: 5px 0; text-align: center">Login</h6>
-                                                            <input type="text" th:name="username" th:value="${user.username}" class="form-control" placeholder="Login">
-                                                            <h6 class="card-title" style="margin: 5px 0; text-align: center">First name</h6>
-                                                            <input type="text" th:name="firstName" th:value="${user.firstName}" class="form-control" placeholder="First name">
-                                                            <h6 class="card-title" style="margin: 5px 0; text-align: center">Last name</h6>
-                                                            <input type="text" th:name="lastName" th:value="${user.lastName}" class="form-control" placeholder="Last name">
-                                                            <h6 class="card-title" style="margin: 5px 0; text-align: center">Password</h6>
-                                                            <input type="password" th:name="password" th:value="${user.password}" class="form-control" placeholder="Password">
-                                                            <h6 class="card-title" style="margin: 5px 0; text-align: center">Role</h6>
+                                                            <!--                                                            <input type="hidden" th:value="${user.username}" th:name="username" />-->
+                                                            <h6 class="card-title"
+                                                                style="margin: 5px 0; text-align: center">ID</h6>
+                                                            <input type="number" th:name="id" th:value="${user.id}"
+                                                                   disabled class="form-control" placeholder="ID">
+                                                            <h6 class="card-title"
+                                                                style="margin: 5px 0; text-align: center">Login</h6>
+                                                            <input type="text" th:name="username"
+                                                                   th:value="${user.username}" class="form-control"
+                                                                   placeholder="Login">
+                                                            <h6 class="card-title"
+                                                                style="margin: 5px 0; text-align: center">First
+                                                                name</h6>
+                                                            <input type="text" th:name="firstName"
+                                                                   th:value="${user.firstName}" class="form-control"
+                                                                   placeholder="First name">
+                                                            <h6 class="card-title"
+                                                                style="margin: 5px 0; text-align: center">Last name</h6>
+                                                            <input type="text" th:name="lastName"
+                                                                   th:value="${user.lastName}" class="form-control"
+                                                                   placeholder="Last name">
+                                                            <h6 class="card-title"
+                                                                style="margin: 5px 0; text-align: center">Password</h6>
+                                                            <input type="password" th:name="password"
+                                                                   th:value="${user.password}" class="form-control"
+                                                                   placeholder="Password">
+                                                            <h6 class="card-title"
+                                                                style="margin: 5px 0; text-align: center">Role</h6>
                                                             <select multiple class="form-control" size="2"
                                                                     name="listRoles">
-<!--                                                                <option value="1">ADMIN</option>-->
-<!--                                                                <option value="2">USER</option>-->
+                                                                <!--                                                                <option value="1">ADMIN</option>-->
+                                                                <!--                                                                <option value="2">USER</option>-->
                                                                 <option
                                                                         th:each="role : ${listRoles}"
                                                                         th:text="${role.name}"
                                                                         th:value="${role.id}">
-<!--                                                                    th:selected="${user.getRoles().contains(role)}"> &lt;!&ndash; Помечаем выбранные роли &ndash;&gt;-->
+                                                                    <!--                                                                    th:selected="${user.getRoles().contains(role)}"> &lt;!&ndash; Помечаем выбранные роли &ndash;&gt;-->
                                                                 </option>
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Close
+                                                        </button>
                                                         <button type="submit" class="btn btn-primary">Edit</button>
                                                     </div>
                                                 </div>
@@ -112,28 +150,44 @@
                                     </div>
 
                                     <!-- ModalDelete -->
-                                    <div class="modal fade" th:id="${'deleteModal' + user.id}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                    <div class="modal fade" th:id="${'deleteModal' + user.id}" tabindex="-1"
+                                         aria-labelledby="deleteModalLabel" aria-hidden="true">
                                         <form th:action="@{/admin/delete/{id}(id = ${user.getId()})}"
                                               th:method="delete">
                                             <div class="modal-dialog modal-dialog-centered">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" id="deleteModalLabel">Delete user</h5>
-<!--                                                        <button type="submit" class="btn btn-danger">Delete</button>-->
-<!--                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+                                                        <!--                                                        <button type="submit" class="btn btn-danger">Delete</button>-->
+                                                        <!--                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
                                                     </div>
-                                                    <div class="modal-body" style="display: flex; align-items: center; justify-content: center">
+                                                    <div class="modal-body"
+                                                         style="display: flex; align-items: center; justify-content: center">
                                                         <div style="width: 90%; display: flex; flex-direction: column; align-items: center; justify-content: center">
-                                                            <h6 class="card-title" style="margin: 5px 0; text-align: center">ID</h6>
-                                                            <input type="text" th:name="id" th:value="${user.id}" disabled class="form-control" placeholder="ID">
-                                                            <h6 class="card-title" style="margin: 5px 0; text-align: center">Login</h6>
-                                                            <input type="text"  th:name="username" th:value="${user.username}" disabled class="form-control" placeholder="Login">
-                                                            <h6 class="card-title" style="margin: 5px 0; text-align: center">First name</h6>
-                                                            <input type="text" th:name="firstName" th:value="${user.firstName}" disabled class="form-control" placeholder="First name">
-                                                            <h6 class="card-title" style="margin: 5px 0; text-align: center">Last name</h6>
-                                                            <input type="text" th:name="lastName" th:value="${user.lastName}" disabled class="form-control" placeholder="Last name">
-                                                            <h6 class="card-title" style="margin: 5px 0; text-align: center">Roles</h6>
-                                                            <select disabled class="form-control" size="2" id="roles" name="roles">
+                                                            <h6 class="card-title"
+                                                                style="margin: 5px 0; text-align: center">ID</h6>
+                                                            <input type="text" th:name="id" th:value="${user.id}"
+                                                                   disabled class="form-control" placeholder="ID">
+                                                            <h6 class="card-title"
+                                                                style="margin: 5px 0; text-align: center">Login</h6>
+                                                            <input type="text" th:name="username"
+                                                                   th:value="${user.username}" disabled
+                                                                   class="form-control" placeholder="Login">
+                                                            <h6 class="card-title"
+                                                                style="margin: 5px 0; text-align: center">First
+                                                                name</h6>
+                                                            <input type="text" th:name="firstName"
+                                                                   th:value="${user.firstName}" disabled
+                                                                   class="form-control" placeholder="First name">
+                                                            <h6 class="card-title"
+                                                                style="margin: 5px 0; text-align: center">Last name</h6>
+                                                            <input type="text" th:name="lastName"
+                                                                   th:value="${user.lastName}" disabled
+                                                                   class="form-control" placeholder="Last name">
+                                                            <h6 class="card-title"
+                                                                style="margin: 5px 0; text-align: center">Roles</h6>
+                                                            <select disabled class="form-control" size="2" id="roles"
+                                                                    name="roles">
                                                                 <option th:each="role : ${listRoles}"
                                                                         th:text="${role.name} + ' '"
                                                                         th:value="${role.id}">
@@ -142,7 +196,9 @@
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Close
+                                                        </button>
                                                         <button type="submit" class="btn btn-danger">Delete</button>
                                                     </div>
                                                 </div>
@@ -165,23 +221,28 @@
                         </div>
                         <div class="card-body" style="display: flex; align-items: center; justify-content: center">
                             <form th:method="post" th:action="@{/admin}">
-                            <div style="width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center">
+                                <div style="width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center">
                                     <h6 class="card-title" style="margin: 5px 0; text-align: center">First name</h6>
-                                    <input required type="text" name="firstName" class="form-control" placeholder="First name">
+                                    <input required type="text" name="firstName" class="form-control"
+                                           placeholder="First name">
                                     <h6 class="card-title" style="margin: 5px 0; text-align: center">Last name</h6>
-                                    <input required type="text" name="lastName" class="form-control" placeholder="Last name">
+                                    <input required type="text" name="lastName" class="form-control"
+                                           placeholder="Last name">
                                     <h6 class="card-title" style="margin: 5px 0; text-align: center">Login</h6>
-                                    <input required type="text" name="username" class="form-control" placeholder="Login">
+                                    <input required type="text" name="username" class="form-control"
+                                           placeholder="Login">
                                     <h6 class="card-title" style="margin: 5px 0; text-align: center">Password</h6>
-                                    <input required type="text" name="password" class="form-control" placeholder="Password">
+                                    <input required type="text" name="password" class="form-control"
+                                           placeholder="Password">
                                     <h6 class="card-title" style="margin: 5px 0; text-align: center">Role</h6>
-                                <select required multiple class="form-control" size="2" id="role" name="listRoles">
+                                    <select required multiple class="form-control" size="2" id="role" name="listRoles">
                                         <option th:each="role : ${listRoles}"
                                                 th:text="${role.name} + ' '"
                                                 th:value="${role.id}">
                                         </option>
                                     </select>
-                                    <button style="margin: 10px 0" type="submit" class="btn btn-success">Add new user</button>
+                                    <button style="margin: 10px 0" type="submit" class="btn btn-success">Add new user
+                                    </button>
                                 </div>
                             </form>
                         </div>
@@ -226,11 +287,15 @@
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
 
 <script>
-    document.getElementById("deleteForm").addEventListener("submit", function(event) {
+    document.getElementById("deleteForm").addEventListener("submit", function (event) {
         event.preventDefault(); // Предотвратить стандартное действие отправки формы
         var confirmation = confirm("Вы уверены, что хотите удалить пользователя?"); // Подтверждение удаления
         if (confirmation) {
@@ -240,13 +305,13 @@
                 headers: {
                     "Content-Type": "application/json"
                 }
-            }).then(function(response) {
+            }).then(function (response) {
                 if (response.ok) {
                     window.location.href = "/admin"; // Перенаправление на страницу после успешного удаления
                 } else {
                     alert("Произошла ошибка при удалении пользователя.");
                 }
-            }).catch(function(error) {
+            }).catch(function (error) {
                 console.error("Произошла ошибка:", error);
                 alert("Произошла ошибка при удалении пользователя.");
             });

@@ -121,11 +121,7 @@ public class UserController {
 //        return "redirect:/admin";
 //    }
 
-    @DeleteMapping("/admin/delete/{id}")
-    public String deleteUser(@PathVariable("id") Long id) {
-        userService.deleteById(id);
-        return "redirect:/admin";
-    }
+
 
     @GetMapping("admin/user-update/{id}")
     public String updateUserForm(@PathVariable("id") Long id, Model model) {
@@ -154,6 +150,11 @@ public class UserController {
         } else {
             return "redirect:/admin"; // Перенаправление на страницу списка пользователей
         }
+    }
+    @DeleteMapping("/admin/delete/{id}")
+    public String deleteUser(@PathVariable("id") Long id) {
+        userService.deleteById(id);
+        return "redirect:/admin";
     }
 }
 
