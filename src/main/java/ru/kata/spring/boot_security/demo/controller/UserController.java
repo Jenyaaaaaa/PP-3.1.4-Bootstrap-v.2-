@@ -16,7 +16,7 @@ import ru.kata.spring.boot_security.demo.service.UserService;
 import ru.kata.spring.boot_security.demo.model.User;
 import java.security.Principal;
 import java.util.List;
-
+import ru.kata.spring.boot_security.demo.model.UserDto;
 
 @Controller
 public class UserController {
@@ -44,6 +44,7 @@ public class UserController {
         model.addAttribute("user", userService.findByUsername(principal.getName()));
         return "user-home";
     }
+
     // Logout с любой страницы
     @GetMapping("/logout")
     public String logout(HttpServletRequest request, HttpServletResponse response) {
@@ -87,13 +88,13 @@ public class UserController {
     }
 
     @PostMapping("/admin/edit/{id}")
-    public String updateUser(@PathVariable Long id, @RequestParam("listRoles") List<Long> listRoleIds, User user) {
+    public String updateUser(@PathVariable Long id, @RequestParam("listRoles") List<Long> listRoleIds, UserDto userDto) {
         User existingUser = userService.findById(id);
 
         if (existingUser != null) {
-            existingUser.setFirstName(user.getFirstName());
-            existingUser.setLastName(user.getLastName());
-            existingUser.setUsername(user.getUsername());
+            existingUser.setFirstName(userDto.getFirstName());
+            existingUser.setLastName(userDto.getLastName());
+            existingUser.setUsername(userDto.getUsername());
             List<Role> roles = roleService.findRolesByIds(listRoleIds);
             existingUser.setRoles(roles);
 
@@ -104,6 +105,25 @@ public class UserController {
             return "redirect:/admin"; // Перенаправление на страницу списка пользователей
         }
     }
+
+//    @PostMapping("/admin/edit/{id}")
+//    public String updateUser(@PathVariable Long id, @RequestParam("listRoles") List<Long> listRoleIds, User user) {
+//        User existingUser = userService.findById(id);
+//
+//        if (existingUser != null) {
+//            existingUser.setFirstName(user.getFirstName());
+//            existingUser.setLastName(user.getLastName());
+//            existingUser.setUsername(user.getUsername());
+//            List<Role> roles = roleService.findRolesByIds(listRoleIds);
+//            existingUser.setRoles(roles);
+//
+//            userService.saveUser(existingUser);
+//
+//            return "redirect:/admin"; // Перенаправление на страницу деталей пользователя
+//        } else {
+//            return "redirect:/admin"; // Перенаправление на страницу списка пользователей
+//        }
+//    }
 
     @DeleteMapping("/admin/delete/{id}")
     public String deleteUser(@PathVariable("id") Long id) {
